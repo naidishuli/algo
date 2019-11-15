@@ -1,32 +1,51 @@
 package sort
 
-type AInterface interface {
-	Len() int
-	Less(i, j int) bool
-	Swap(i, j int)
-}
+type AInt []int
+func (ai AInt) Len() int           { return len(ai) }
+func (ai AInt) Less(i, j int) bool { return ai[i] < ai[j] }
+func (ai AInt) Swap(i, j int)      { ai[i], ai[j] = ai[j], ai[i] }
 
 type AInt8 []int8
 func (ai AInt8) Len() int           { return len(ai) }
 func (ai AInt8) Less(i, j int) bool { return ai[i] < ai[j] }
 func (ai AInt8) Swap(i, j int)      { ai[i], ai[j] = ai[j], ai[i] }
 
-type AInt16 []int8
+type AInt16 []int16
 func (ai AInt16) Len() int           { return len(ai) }
 func (ai AInt16) Less(i, j int) bool { return ai[i] < ai[j] }
 func (ai AInt16) Swap(i, j int)      { ai[i], ai[j] = ai[j], ai[i] }
 
-type AInt32 []int8
+type AInt32 []int32
 func (ai AInt32) Len() int           { return len(ai) }
 func (ai AInt32) Less(i, j int) bool { return ai[i] < ai[j] }
 func (ai AInt32) Swap(i, j int)      { ai[i], ai[j] = ai[j], ai[i] }
 
-func BubbleSort(data AInterface) {
-	for i := 0; i < data.Len(); i++ {
-		for j := 0; j < (data.Len() - i - 1); j++ {
-			if data.Less(j, j + 1) {
-				data.Swap(j, j + 1)
-			}
-		}
-	}
-}
+type AInt64 []int64
+func (ai AInt64) Len() int           { return len(ai) }
+func (ai AInt64) Less(i, j int) bool { return ai[i] < ai[j] }
+func (ai AInt64) Swap(i, j int)      { ai[i], ai[j] = ai[j], ai[i] }
+
+type AUInt []uint
+func (ai AUInt) Len() int           { return len(ai) }
+func (ai AUInt) Less(i, j int) bool { return ai[i] < ai[j] }
+func (ai AUInt) Swap(i, j int)      { ai[i], ai[j] = ai[j], ai[i] }
+
+type AUInt8 []uint8
+func (ai AUInt8) Len() int           { return len(ai) }
+func (ai AUInt8) Less(i, j int) bool { return ai[i] < ai[j] }
+func (ai AUInt8) Swap(i, j int)      { ai[i], ai[j] = ai[j], ai[i] }
+
+type AUInt16 []uint16
+func (ai AUInt16) Len() int           { return len(ai) }
+func (ai AUInt16) Less(i, j int) bool { return ai[i] < ai[j] }
+func (ai AUInt16) Swap(i, j int)      { ai[i], ai[j] = ai[j], ai[i] }
+
+type AUInt32 []uint32
+func (ai AUInt32) Len() int           { return len(ai) }
+func (ai AUInt32) Less(i, j int) bool { return ai[i] < ai[j] }
+func (ai AUInt32) Swap(i, j int)      { ai[i], ai[j] = ai[j], ai[i] }
+
+type AUInt64 []uint64
+func (ai AUInt64) Len() int           { return len(ai) }
+func (ai AUInt64) Less(i, j int) bool { return ai[i] < ai[j] }
+func (ai AUInt64) Swap(i, j int)      { ai[i], ai[j] = ai[j], ai[i] }
