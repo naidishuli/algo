@@ -39,15 +39,47 @@ func InsertionSort(data AInterface) {
 		jd := data.Get(j)
 
 		for {
-			if j >= 0 && data.LessD(c, jd){
+			if j >= 0 && data.LessD(c, jd) {
 				fmt.Println(c)
-				data.Assign(j + 1, jd)
+				data.Assign(j+1, jd)
 				j -= 1
-			}else {
+			} else {
 				break
 			}
 		}
 
-		data.Assign(j + 1, c)
+		data.Assign(j+1, c)
 	}
+}
+
+func partition(data AInterface, low int, high int) int {
+	pivot := data.Get(high)
+
+	i := (low - 1)
+
+	for j := low; j <= high-1; j++ {
+		if data.LessD(data.Get(j), pivot) {
+			i++
+			data.Swap(i, j)
+		}
+	}
+	data.Swap(i+1, high)
+	return i + 1
+}
+
+func quickSort(data AInterface, low int, high int) {
+	if low < high {
+		pi := partition(data, low, high)
+
+		// TODO: this can be parallelized
+		quickSort(data, low, pi-1)  // Before pi
+		quickSort(data, pi+1, high) // After pi
+	}
+}
+
+//by default the data is sorted in ascending mode
+func QuickSort(data AInterface) {
+	// TODO: explore different ways to choose low and high
+	// index and measure performance
+	quickSort(data, 0, data.Len()-1)
 }
