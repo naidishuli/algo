@@ -1,7 +1,5 @@
 package sort
 
-import "fmt"
-
 //by default the data is sorted in ascending mode
 func BubbleSort(data AInterface) {
 	l := data.Len()
@@ -32,24 +30,27 @@ func SelectionSort(data AInterface) {
 func InsertionSort(data AInterface) {
 	l := data.Len()
 	for i := 1; i < l; i++ {
-		c := data.Get(i)
-
+		key := data.Get(i)
 		j := i - 1
 
-		jd := data.Get(j)
-
 		for {
-			if j >= 0 && data.LessD(c, jd) {
-				fmt.Println(c)
-				data.Assign(j+1, jd)
+			if j >= 0 && data.LessD(key, data.Get(j)) {
+				data.Assign(j+1, data.Get(j))
 				j -= 1
 			} else {
 				break
 			}
 		}
 
-		data.Assign(j+1, c)
+		data.Assign(j+1, key)
 	}
+}
+
+//by default the data is sorted in ascending mode
+func QuickSort(data AInterface) {
+	// TODO: explore different ways to choose low and high
+	// index and measure performance
+	quickSort(data, 0, data.Len()-1)
 }
 
 func partition(data AInterface, low int, high int) int {
@@ -75,11 +76,4 @@ func quickSort(data AInterface, low int, high int) {
 		quickSort(data, low, pi-1)  // Before pi
 		quickSort(data, pi+1, high) // After pi
 	}
-}
-
-//by default the data is sorted in ascending mode
-func QuickSort(data AInterface) {
-	// TODO: explore different ways to choose low and high
-	// index and measure performance
-	quickSort(data, 0, data.Len()-1)
 }
