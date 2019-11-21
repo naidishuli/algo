@@ -10,6 +10,13 @@ func (ai AInt) LessD(i, j interface{}) bool     { return i.(int) < j.(int) }
 func (ai AInt) Assign(i int, d interface{}){
 	ai[i] = d.(int)
 }
+func (ai AInt) InsertionB (i, j int){
+	c := append(ai[:j], ai[i])
+	c = append(c, ai[j:i]...)
+	c = append(c, ai[i+1:]...)
+	ai = c
+}
+
 
 type AInt8 []int8
 

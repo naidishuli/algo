@@ -7,4 +7,5 @@ type AInterface interface {
 	Assign(i int, d interface{})
 	Get(i int) interface{}
 	LessD(i, j interface{}) bool
+	InsertionB(i, j int)
 }

@@ -27,22 +27,52 @@ func SelectionSort(data AInterface) {
 }
 
 //by default the data is sorted in ascending mode
-func InsertionSort(data AInterface) {
-	l := data.Len()
-	for i := 1; i < l; i++ {
-		key := data.Get(i)
-		j := i - 1
+func InsertionSortBinary(data AInterface) {
+	for i := 1; i < data.Len(); i++{
+		//val := data.Get(i)
+		j := insertionBinary(data, i, 0, i-1)
+		//arr = arr[:j] + [val] + arr[j:i] + arr[i+1:]
+		data.InsertionP(i, j)
+	}
+}
 
-		for {
-			if j >= 0 && data.LessD(key, data.Get(j)) {
-				data.Assign(j+1, data.Get(j))
-				j -= 1
-			} else {
-				break
-			}
+func insertionBinary(data AInterface, i int, start, end int) int {
+	if start == end{
+		if data.Less(i, start){
+			return start
+		}else{
+			return start + 1
 		}
+	}
 
-		data.Assign(j+1, key)
+	if start > end{
+		return start
+	}
+
+	mid := (start + end) / 2
+
+	if data.Less(mid, i){
+		return insertionBinary(data, i, mid + 1, end)
+	}
+
+	if data.Less(i, mid){
+		return insertionBinary(data, i, start, mid - 1)
+	}
+
+	return mid
+}
+
+//by default the data is sorted in ascending mode
+func InsertionSort(data AInterface) {
+	var n = data.Len()
+	for i := 1; i < n; i++ {
+		j := i
+		for j > 0 {
+			if data.Less(j, j-1){
+				data.Swap(j-1,j)
+			}
+			j = j - 1
+		}
 	}
 }
 
