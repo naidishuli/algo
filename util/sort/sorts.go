@@ -1,7 +1,9 @@
 package sort
 
+import "github.com/naidishuli/algo/atypes"
+
 //by default the data is sorted in ascending mode
-func BubbleSort(data AInterface) {
+func BubbleSort(data atypes.AInterface) {
 	l := data.Len()
 	for i := 0; i < l; i++ {
 		for j := 0; j < (l - i - 1); j++ {
@@ -13,7 +15,7 @@ func BubbleSort(data AInterface) {
 }
 
 //by default the data is sorted in ascending mode
-func SelectionSort(data AInterface) {
+func SelectionSort(data atypes.AInterface) {
 	l := data.Len()
 	for i := 0; i < l; i++ {
 		minIndex := i
@@ -27,16 +29,16 @@ func SelectionSort(data AInterface) {
 }
 
 //by default the data is sorted in ascending mode
-func InsertionSortBinary(data AInterface) {
+func InsertionSortBinary(data atypes.AInterface) {
 	for i := 1; i < data.Len(); i++{
 		//val := data.Get(i)
 		j := insertionBinary(data, i, 0, i-1)
 		//arr = arr[:j] + [val] + arr[j:i] + arr[i+1:]
-		data.InsertionP(i, j)
+		data.InsertionB(i, j)
 	}
 }
 
-func insertionBinary(data AInterface, i int, start, end int) int {
+func insertionBinary(data atypes.AInterface, i int, start, end int) int {
 	if start == end{
 		if data.Less(i, start){
 			return start
@@ -63,7 +65,7 @@ func insertionBinary(data AInterface, i int, start, end int) int {
 }
 
 //by default the data is sorted in ascending mode
-func InsertionSort(data AInterface) {
+func InsertionSort(data atypes.AInterface) {
 	var n = data.Len()
 	for i := 1; i < n; i++ {
 		j := i
@@ -77,13 +79,13 @@ func InsertionSort(data AInterface) {
 }
 
 //by default the data is sorted in ascending mode
-func QuickSort(data AInterface) {
+func QuickSort(data atypes.AInterface) {
 	// TODO: explore different ways to choose low and high
 	// index and measure performance
 	quickSort(data, 0, data.Len()-1)
 }
 
-func partition(data AInterface, low int, high int) int {
+func partition(data atypes.AInterface, low int, high int) int {
 	pivot := data.Get(high)
 
 	i := (low - 1)
@@ -98,7 +100,7 @@ func partition(data AInterface, low int, high int) int {
 	return i + 1
 }
 
-func quickSort(data AInterface, low int, high int) {
+func quickSort(data atypes.AInterface, low int, high int) {
 	if low < high {
 		pi := partition(data, low, high)
 

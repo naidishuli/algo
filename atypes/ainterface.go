@@ -1,4 +1,4 @@
-package sort
+package atypes
 
 type AInterface interface {
 	Len() int
